@@ -6,6 +6,7 @@ import win32gui
 
 
 def init_game():
+    # 启动游戏
     webbrowser.open('steam://rungameid/3557620')
     time.sleep(30)
     pyautogui.press("space")
@@ -257,3 +258,4 @@ if __name__ == '__main__':
     material()
     # 竞技场
     jjc()
+    print("全部完成喵！")
