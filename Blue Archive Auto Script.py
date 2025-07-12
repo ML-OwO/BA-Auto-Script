@@ -6,15 +6,27 @@ import win32gui
 
 
 def init_game():
-    # 启动游戏
     webbrowser.open('steam://rungameid/3557620')
     time.sleep(30)
+    # 关闭活动广告 (一般有2个)
+    pyautogui.moveTo(1418, 221, duration=0.2)
+    pyautogui.click()
+    time.sleep(3)
+    pyautogui.moveTo(1418, 221, duration=0.2)
+    pyautogui.click()
+    time.sleep(3)
+    # 进入游戏
     pyautogui.press("space")
     time.sleep(20)
+    # 签到 (有2个)
+    pyautogui.press("space")
+    time.sleep(3)
+    pyautogui.press("space")
+    time.sleep(10)
     # 关闭公告
     pyautogui.moveTo(1574, 191)
     pyautogui.click()
-    time.sleep(1)
+    time.sleep(10)
 
 
 # 课程表
@@ -62,10 +74,13 @@ def lesson():
     lesson_checkin(450, 841)
     lesson_checkin(905, 834)
     # 返回主页
+    time.sleep(1)
+    pyautogui.press('esc')
     pyautogui.moveTo(1733, 68, duration=0.2)
     time.sleep(0.8)
     pyautogui.click()
     print("课程表已完成！")
+    time.sleep(3)
 
 
 # 咖啡厅
@@ -79,33 +94,33 @@ def cafe():
     # 摸头
     def touch_head():
         click_wait(722, 724)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.press("space")
         time.sleep(0.5)
         click_wait(817, 806)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.press("space")
         time.sleep(0.5)
         click_wait(926, 852)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.press("space")
         time.sleep(0.5)
         click_wait(969, 740)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.press("space")
         time.sleep(0.5)
         click_wait(1080, 798)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.press("space")
         time.sleep(0.5)
         click_wait(1229, 766)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.press("space")
         time.sleep(0.5)
 
     # 进入课程表
     click_wait(130, 949)
-    time.sleep(6.5)
+    time.sleep(10)
     pyautogui.press("space")
     time.sleep(0.5)
     # 邀请学生
@@ -118,7 +133,7 @@ def cafe():
 
     # 进入2号
     click_wait(194, 179)
-    time.sleep(6.5)
+    time.sleep(10)
     pyautogui.press("space")
     time.sleep(2.5)
     # 邀请学生
@@ -144,20 +159,26 @@ def cafe():
     time.sleep(0.8)
     pyautogui.click()
     print("咖啡厅已完成！")
+    time.sleep(5)
 
 
 # 社团签到
 def society():
+    # 点击社交
     pyautogui.moveTo(793, 946, duration=0.2)
     pyautogui.click()
     time.sleep(1)
+    # 点击社团
     pyautogui.moveTo(436, 563, duration=0.2)
     pyautogui.click()
     time.sleep(3)
+    # 体力领取确认
     pyautogui.press("space")
     time.sleep(0.5)
+    # 返回主界面
     pyautogui.press("esc")
     print("社团签到已完成！")
+    time.sleep(5)
 
 
 # 材料本
@@ -187,48 +208,78 @@ def material():
     pyautogui.press("space")
     time.sleep(1)
     pyautogui.press("esc")
-    time.sleep(1)
+    time.sleep(2)
 
     pyautogui.press("esc")
-    time.sleep(1)
+    time.sleep(2)
     pyautogui.press("esc")
-    time.sleep(1)
+    time.sleep(2)
     pyautogui.press("esc")
-    time.sleep(1)
+    time.sleep(2)
+    pyautogui.press("esc")
+    time.sleep(2)
 
     print("材料本已完成！")
+    time.sleep(5)
 
 
 # 竞技场
-def jjc():
+def jjc(count: int):
+    # 进入JJC
     pyautogui.moveTo(1235, 864, duration=0.2)
     pyautogui.click()
-    time.sleep(2)
-    pyautogui.moveTo(1236, 405, duration=0.2)
-    pyautogui.click()
-    time.sleep(1)
-    pyautogui.press("space")
-    time.sleep(0.5)
-    pyautogui.press("space")
-    time.sleep(1)
-    pyautogui.press("space")
-    time.sleep(5)
-    pyautogui.press("space")
-    time.sleep(1)
+    time.sleep(3)
+    for i in range(count):
+        print(f"JJC:开始第{i + 1}次JJC")
+        # 选择第一个人
+        print(f"JJC:选择第一个人")
+        pyautogui.moveTo(1236, 405, duration=0.2)
+        pyautogui.click()
+        time.sleep(3)
+        # 攻击编制
+        print(f"JJC:攻击编制")
+        pyautogui.press("space")
+        time.sleep(3)
+        # 出击
+        print(f"JJC:出击")
+        pyautogui.press("space")
+        time.sleep(3)
+        # 战斗结果确认
+        print(f"JJC:战斗结果确认")
+        pyautogui.press("space")
+        time.sleep(5)
+
+        if count - i > 1:
+            time.sleep(61)
+
+    # pyautogui.press("space")
+    # time.sleep(3)
+
+    # 领取金币
+    print(f"JJC:领取金币")
     pyautogui.moveTo(499, 573, duration=0.2)
     pyautogui.click()
-    time.sleep(2)
+    time.sleep(3)
+    # 确认窗口
+    print(f"JJC:确认窗口")
     pyautogui.press("space")
-    time.sleep(1)
+    time.sleep(3)
+    # 领取水晶
+    print(f"JJC:领取水晶")
     pyautogui.moveTo(488, 688, duration=0.2)
     pyautogui.click()
-    time.sleep(2)
+    time.sleep(3)
+    # 确认窗口
+    print(f"JJC:确认窗口")
     pyautogui.press("space")
-    time.sleep(1)
+    time.sleep(3)
+    # 返回任务界面
+    print(f"JJC:返回任务界面")
     pyautogui.press("esc")
-    time.sleep(1)
+    time.sleep(3)
+    # 返回主界面
+    print(f"返回主界面")
     pyautogui.press("esc")
-
     print("JJC已完成！")
 
 
@@ -242,12 +293,13 @@ def switch_to_window(title):
 
 
 if __name__ == '__main__':
-    # 全局操作等待延迟
-    pyautogui.PAUSE = 0.1
     # 启动游戏
     init_game()
+
     # 切换窗口(测试用)
     # switch_to_window("Blue Archive")
+    # time.sleep(2)
+
     # 课程表
     lesson()
     # 咖啡厅 (摸头收体力)
@@ -256,6 +308,5 @@ if __name__ == '__main__':
     society()
     # 材料本
     material()
-    # 竞技场
-    jjc()
-    print("全部完成喵！")
+    # 竞技场 (攻击次数)
+    jjc(5)
